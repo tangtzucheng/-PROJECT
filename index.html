@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+		<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+		<meta name="description" content="Find a marker nearest to the click location">
+		<title>Finding the Surveillance Cam</title>
+		<link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css" />
+		<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
+		<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
+		<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+		<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+	</head>
+	<body>
+		<input type="text" id="searchText" placeholder="找哪條路">
+		<button onclick="search()">搜尋</button>
+		<button style="display:inline-block;" onclick="getGPS()">目前位置</button>
+		<select id="radius" style="display:inline-block;">
+			<option value="0">目標半徑</option>
+			<option value="100">100公尺</option>
+			<option value="300">300公尺</option>
+			<option value="500">500公尺</option>
+			<option value="1000">1000公尺</option>
+		</select>
+		<button style="display:inline-block;" onclick="genList()">取得列表</button>
+		<select id="list" style="display:inline-block;">
+			<option>---範圍內監視器---</option>
+		</select>
+		<span style="display:inline-block;float:right">資料來源:嘉義市政府資料開放平台</span>
+		<div id="map" style="width: 1200px; height: 800px; background: grey"></div>
+		<script type="text/javascript">
+			document.addEventListener('DOMContentLoaded', function() {
+				var width = window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth;
+				var height = window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight;
+				e=document.getElementById("map");
+				e.setAttribute("style","width:"+String(width-16)+"px;height:"+String(height-40)+"px; background: grey");
+				map.getViewPort().resize();
+			});
+			
+			window.addEventListener('resize',function(){
+				var width = window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth;
+				var height = window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight;
+				e=document.getElementById("map");
+				e.setAttribute("style","width:"+String(width-16)+"px;height:"+String(height-40)+"px; background: grey");
+				map.getViewPort().resize();
+			});
+		</script>
+		<script type="text/javascript" src="cams.json"></script>
+		<script type="text/javascript" src='app.js'></script>
+		
+   </body>
+</html>
